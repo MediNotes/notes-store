@@ -53,10 +53,10 @@ export default async function MyProducts({
                             <h1 className="text-5xl font-bold">{products[0].name}</h1>
                             <p className="py-6">{products[0].description}</p>
                             <Link
-                                href={"/products/" + products[0].id}
+                                href={"/my-products/" + products[0].id}
                                 className="btn-primary btn"
                             >
-                                Check it out
+                                View
                             </Link>
                         </div>
                     </div>
