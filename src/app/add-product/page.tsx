@@ -28,7 +28,7 @@ async function addProduct(formData: FormData) {
     }
 
     await prisma.product.create({
-        data: { name, description, fileUrl, imageUrl, price },
+        data: { name, description, fileUrl, imageUrl, price, userId: session.user.id },
     });
 
     redirect("/");
