@@ -4,7 +4,9 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { cache } from "react";
-
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
 
 interface ProductPageProps {
     params: {
@@ -35,7 +37,14 @@ export async function generateMetadata({
 export default async function MyProductPage({
     params: { id },
 }: ProductPageProps) {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+        redirect("/api/auth/signin?callbackUrl=/my-products");
+    }
     const product = await getProduct(id);
+    //Todo: There is a better way
+    if (product?.userId != session.user.id) notFound();
 
     return (
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
