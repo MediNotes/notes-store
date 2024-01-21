@@ -7,13 +7,13 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 
-interface HomeProps {
+interface MyProductsPageProps {
     searchParams: { page: string };
 }
 
-export default async function MyProducts({
+export default async function MyProductsPage({
     searchParams: { page = "1" },
-}: HomeProps) {
+}: MyProductsPageProps) {
     const session = await getServerSession(authOptions);
 
     if (!session) {

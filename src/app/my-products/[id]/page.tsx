@@ -2,6 +2,7 @@ import PriceTag from "@/components/PriceTag";
 import { prisma } from "@/lib/db/prisma";
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import { getServerSession } from "next-auth";
@@ -62,11 +63,12 @@ export default async function MyProductPage({
                 <PriceTag price={product.price} className="mt-4" />
                 <p className="py-6">{product.description}</p>
                 <div className="flex items-center gap-2">
-                    <button
+                    <Link
+                        href={"/my-products/edit-product/" + product.id}
                         className="btn-primary btn"
                     >
                         Update
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>
