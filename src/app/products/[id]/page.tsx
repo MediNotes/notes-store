@@ -9,7 +9,7 @@ import { incrementProductQuantity } from "./actions";
 
 interface ProductPageProps {
     params: {
-        id: string;
+        id: string
     };
 }
 
